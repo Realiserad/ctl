@@ -1,0 +1,23 @@
+[
+	[idle, [accept_conn]],
+	[accept_conn, [server_static,internal_err,server_cgi]],
+	[internal_err, [write_data]],
+	[server_static, [write_data]],
+	[server_cgi, [internal_err,write_data]],
+	[write_data, [write_data,tcp_fin]],
+	[tcp_fin, [idle]]
+].
+
+[
+	[idle, []],
+	[accept_conn, [p]],
+	[internal_err, [p,q]],
+	[server_static, [p,q]],
+	[server_cgi, [p,q]],
+	[write_data, [p,q,r]],
+	[tcp_fin, [p]]
+].
+
+idle.
+
+ax(ax(ex(or(p,q)))).
